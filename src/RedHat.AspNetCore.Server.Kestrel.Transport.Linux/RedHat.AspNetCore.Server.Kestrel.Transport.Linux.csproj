@@ -2,13 +2,14 @@
   <Import Project="../../dependencies.props" />
 
   <PropertyGroup>
-    <VersionPrefix>3.1.0</VersionPrefix>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <VersionPrefix>5.0</VersionPrefix>
+    <TargetFramework>net5.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>portable</DebugType>
     <LangVersion>8.0</LangVersion>
     <OutputType>Library</OutputType>
     <IsPackable>true</IsPackable>
+    <Version>4.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

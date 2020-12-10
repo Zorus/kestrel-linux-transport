@@ -687,6 +687,26 @@ namespace RedHat.AspNetCore.Server.Kestrel.Transport.Linux
                             ipSocket = false;
                         }
 
+                        if (_transportOptions.KeepAliveOptions.KeepAlive)
+                        {
+                            tsocket.SetSocketOption(SOL_SOCKET, SO_KEEPALIVE, 1);
+
+                            if (_transportOptions.KeepAliveOptions.KeepCnt > 0)
+                            {
+                                tsocket.SetSocketOption(IPPROTO_TCP, TCP_KEEPCNT, _transportOptions.KeepAliveOptions.KeepCnt);
+                            }
+
+                            if (_transportOptions.KeepAliveOptions.KeepIdle > 0)
+                            {
+                                tsocket.SetSocketOption(IPPROTO_TCP, TCP_KEEPIDLE, _transportOptions.KeepAliveOptions.KeepIdle);
+                            }
+
+                            if (_transportOptions.KeepAliveOptions.KeepIntvl > 0)
+                            {
+                                tsocket.SetSocketOption(IPPROTO_TCP, TCP_KEEPINTVL, _transportOptions.KeepAliveOptions.KeepIntvl);
+                            }
+                        }
+
                         if (ipSocket)
                         {
                             tsocket.SetSocketOption(SOL_TCP, TCP_NODELAY, 1);

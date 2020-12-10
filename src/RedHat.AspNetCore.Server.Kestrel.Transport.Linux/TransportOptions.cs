@@ -3,6 +3,54 @@ using System.IO.Pipelines;
 
 namespace RedHat.AspNetCore.Server.Kestrel.Transport.Linux
 {
+    public struct KeepAliveOptions
+    {
+        private int _keepcnt;
+        private int _keepidle;
+        private int _keepintvl;
+
+        public bool KeepAlive;
+        
+        public int KeepCnt
+        {
+            get => _keepcnt;
+            set
+            {
+                if (value > 0)
+                {
+                    KeepAlive = true;
+                }
+                _keepcnt = value;
+            }
+        }
+
+        public int KeepIdle
+        {
+            get => _keepidle;
+            set
+            {
+                if (value > 0)
+                {
+                    KeepAlive = true;
+                }
+                _keepidle = value;
+            }
+        }
+
+        public int KeepIntvl
+        {
+            get => _keepintvl;
+            set
+            {
+                if (value > 0)
+                {
+                    KeepAlive = true;
+                }
+                _keepintvl = value;
+            }
+        }
+    }
+
     public class LinuxTransportOptions
     {
         public const int NoZeroCopy = int.MaxValue;
@@ -84,6 +132,8 @@ namespace RedHat.AspNetCore.Server.Kestrel.Transport.Linux
         }
 
         public bool AioReceive { get; set; } = false;
+
+        public KeepAliveOptions KeepAliveOptions { get; set; }
 
         public bool AioSend
         {
